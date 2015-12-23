@@ -1,0 +1,23 @@
+---
+- name: Download nodejs setup
+  get_url: 
+    url: "{{ node_setup_url }}"
+    dest: "{{ ansible_user_dir }}/go-setup.sh"
+
+- name: Make setup executable
+  file:
+    path: "{{ ansible_user_dir }}/go-setup.sh"
+    mode: "u+x"
+    state: touch
+
+- name: Execute node setup
+  become: yes
+  shell: "{{ ansible_user_dir }}/go-setup.sh >> {{ ansible_user_dir }}/go-setup-results.log"
+
+- name: Install NodeJS
+  become: yes
+  apt:
+    name: "{{ node_package_name }}"
+    state: "{{ 'latest' if update_node_package else 'present' }}"
+    update_cache: yes
+    cache_valid_time: 600

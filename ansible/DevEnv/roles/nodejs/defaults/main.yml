@@ -1,0 +1,4 @@
+---
+node_setup_url: https://deb.nodesource.com/setup_4.x
+node_package_name: nodejs
+update_node_package: no
