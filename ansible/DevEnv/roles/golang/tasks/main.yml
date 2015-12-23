@@ -1,0 +1,27 @@
+---
+- name: Check to see if specified Go version is already installed
+  become: yes
+  stat: path=/usr/local/go-{{ gover }}
+  register: go_installed
+
+- include: install.yml
+  become: yes
+  when: not go_installed.stat.exists
+
+- name: Update PATH
+  lineinfile:
+    dest: "{{ansible_user_dir}}/.profile"
+    line: "export PATH=$PATH:/usr/local/go/bin"
+    regexp: "/go/bin"
+    insertafter: EOF
+    state: present
+    create: False
+
+- name: Configure GOPATH
+  lineinfile:
+    dest: "{{ansible_user_dir}}/.profile"
+    line: "export GOPATH=$HOME/dev/go"
+    regexp: "GOPATH"
+    insertafter: EOF
+    state: present
+    create: False

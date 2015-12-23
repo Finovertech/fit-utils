@@ -1,0 +1,11 @@
+---
+- name: Install Java and Maven
+  become: yes
+  apt: 
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 600
+  with_items:
+    - openjdk-7-jdk
+    - maven

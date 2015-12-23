@@ -1,0 +1,9 @@
+---
+- name: Check if docker is installed
+  become: yes
+  stat: path=/usr/bin/docker
+  register: docker_status
+
+- include: install.yml
+  become: yes
+  when: update_docker_package or (not docker_status.stat.exists)

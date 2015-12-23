@@ -1,0 +1,29 @@
+---
+- name: Download Go for Linux x64
+  get_url:
+    url: https://storage.googleapis.com/golang/go{{ gover }}.linux-amd64.tar.gz
+    dest: /tmp/go{{ gover }}.tar.gz
+  when: ansible_architecture == 'x86_64'
+
+- name: Download Go for Linux i386
+  get_url:
+    url: https://storage.googleapis.com/golang/go{{ gover }}.linux-386.tar.gz
+    dest: /tmp/go{{ gover }}.tar.gz
+  when: ansible_architecture == 'i386'
+
+- name: Breaking Go symlink
+  file:
+    path: /usr/local/go
+    state: absent
+
+- name: Extract Archive
+  command: /bin/tar -C /usr/local -zxf /tmp/go{{ gover }}.tar.gz
+
+- name: Rename Go Installation
+  command: mv /usr/local/go /usr/local/go-{{ gover }}
+
+- name: Setup Symlink to newly installed version of Go
+  file:
+    src: /usr/local/go-{{ gover }}
+    dest: /usr/local/go
+    state: link
