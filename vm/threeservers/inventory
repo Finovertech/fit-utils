@@ -1,0 +1,41 @@
+server1 ansible_host=10.0.0.11
+server2 ansible_host=10.0.0.12
+server3 ansible_host=10.0.0.13
+
+[kafka]
+server1 kafka_broker_id=1
+server2 kafka_broker_id=2
+server3 kafka_broker_id=3
+
+[zookeeper]
+server1 zookeeper_id=1
+server2 zookeeper_id=2
+server3 zookeeper_id=3
+
+[supervisor]
+server2
+server3
+
+[nimbus]
+server1
+
+[ldap]
+server1
+server2
+server3
+
+[storm:children]
+nimbus
+supervisor
+
+[servers:children]
+kafka
+storm
+zookeeper
+
+[servers:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant
+
+
+
