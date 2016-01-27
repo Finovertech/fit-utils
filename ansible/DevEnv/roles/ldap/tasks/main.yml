@@ -1,0 +1,10 @@
+---
+- name: Update apt-get
+  sudo: yes
+  apt: update_cache=yes
+- name: Install slapd
+  sudo: yes
+  apt: pkg=slapd state=present
+- name: Install ldap-utils
+  sudo: yes
+  apt: pkg=ldap-utils state=present
