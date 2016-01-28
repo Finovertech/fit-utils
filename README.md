@@ -2,6 +2,14 @@
 
 Collection of useful scripts to share with the world!
 
+## Virtual Machines
+
+The folder `/vm` contains several configurations for easily spinning up a test environment. Unless you simply want to exercise your microservice in isolation, you will want to spin up a non-production environment.
+
+## Ansible
+
+The folder `/ansible` contains scripts for configuring servers and development environments.
+
 ## Ubuntu
 ### [Docker Cleanup Script](ubuntu/docker-cleanup)
 

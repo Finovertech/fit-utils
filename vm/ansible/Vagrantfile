@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+
+	config.vm.define "ansible" do |a|
+		a.vm.box = "ubuntu/wily64"
+		a.vm.hostname = "ansible"
+		a.vm.network :private_network, ip: "10.0.0.5"
+		a.vm.provision "shell",
+			path: "provision_root.sh"
+		a.vm.provision "shell",
+			privileged: false,
+			path: "provision_vagrant.sh"
+		a.vm.synced_folder "vagrant_share", "/vagrant", :mount_options => ["fmode=666"]
+	end
+end

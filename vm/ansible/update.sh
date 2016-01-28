@@ -1,0 +1,1 @@
+vagrant ssh -c "git -C fit-utils pull && ansible-playbook fit-utils/ansible/Servers/download_file_archives.yml"

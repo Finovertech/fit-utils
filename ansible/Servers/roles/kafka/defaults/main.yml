@@ -1,0 +1,6 @@
+---
+kafka_version: kafka_2.11-0.9.0.0
+kafka_group: kafka
+kafka_user: kafka
+kafka_conf_dir: /etc/kafka/config
+kafka_log_dir: /var/log/kafka
