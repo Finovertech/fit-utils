@@ -4,7 +4,7 @@
   tasks:
     - name: Download {{ item.filename }}
       command: >
-        chdir=file_archive
+        chdir=file_archives
         creates=file_archives/{{ item.filename }}
         wget --output-document {{ item.filename }} {{ item.url }}
       with_items:
