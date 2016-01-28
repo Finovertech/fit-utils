@@ -1,0 +1,5 @@
+dn: cn=ldaps2,dc=test
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: ldaps2
+userPassword: {SSHA}FaPDSxBQC2vEo6i+Jl33SmWZF5f8kelw
