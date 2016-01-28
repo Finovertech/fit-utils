@@ -1,8 +1,9 @@
 ---
 - hosts: localhost
   remote_user: root
+  gather_facts: no
   tasks:
-    - name: Download {{ item.filename }}
+    - name: Download files
       command: >
         chdir=file_archives
         creates=file_archives/{{ item.filename }}
