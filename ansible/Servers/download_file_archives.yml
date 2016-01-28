@@ -5,7 +5,7 @@
     - name: Download {{ item.filename }}
       command: >
         chdir=file_archive
-        creates=file_archive/{{ jdk_download_filename }}
+        creates=file_archive/{{ item.filename }}
         wget --output-document {{ item.filename }} {{ item.url }}
       with_items:
         - { filename: 'kafka_2.11-0.9.0.0.tgz', url: 'http://apache.mirror.rafal.ca/kafka/0.9.0.0/kafka_2.11-0.9.0.0.tgz' }
