@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: root
+  tasks:
+    - name: Download {{ item.filename }}
+      command: >
+        chdir=file_archive
+        creates=file_archive/{{ jdk_download_filename }}
+        wget --output-document {{ item.filename }} {{ item.url }}
+      with_items:
+        - { filename: kafka_2.11-0.9.0.0.tgz, url: http://apache.mirror.rafal.ca/kafka/0.9.0.0/kafka_2.11-0.9.0.0.tgz }
+        - { filename: apache-storm-0.10.0.tar.gz, url: http://www.apache.org/dyn/closer.lua/storm/apache-storm-0.10.0/apache-storm-0.10.0.tar.gz }
