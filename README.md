@@ -23,9 +23,3 @@ Lists which containers and images it will purge
 ```
 docker-cleanup --dry-run
 ```
-##OpenLDAP
-**Installation**
-```
-
-```
-**Clustering**

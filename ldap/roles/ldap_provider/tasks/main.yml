@@ -1,1 +1,15 @@
 ---
+- name: copy reader for consumer 
+  copy: src=../files/create_repl_user.ldif dest=~
+
+- name: Create reader for consumer
+  sudo: yes
+  command: ldapadd -D "cn=admin,dc=test" -w admin -f create_repl_user.ldif 
+  
+- name: Copy config file to provider
+  copy: src=../files/enable_sync_prov.ldif dest=~
+
+- name: Enable sync provider
+  sudo: yes
+  command: ldapadd -D "cn=admin,dc=test" -w admin -f enable_sync_prov.ldif -Y EXTERNAL -H ldapi:///
+

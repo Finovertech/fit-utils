@@ -44,12 +44,12 @@ olcDbIndex: ou eq
 add: olcDbIndex
 olcDbIndex: dc eq
 
-
+#Change provider's IP address
 dn: olcDatabase={1}hdb,cn=config
 changetype: modify
 add: olcSyncrepl
 olcSyncrepl: rid=123
-  provider="ldap://server1:389/"
+  provider="ldap://192.168.1.234:389/"
   type=refreshAndPersist
   retry="60 30 300 +"
   searchbase="dc=test"
