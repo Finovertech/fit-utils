@@ -3,5 +3,5 @@
   become_method: sudo
   roles:
     - ldap
-    - ldap_consumer
-    - ldap_provider
+    #- ldap_consumer
+    #- ldap_provider

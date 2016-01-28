@@ -2,13 +2,64 @@
 - name: Update apt-get
   sudo: yes
   apt: update_cache=yes
-- name: Install slapd
+#- name: Install slapd
+#  sudo: yes
+#  apt: pkg=slapd state=present
+#- name: Install ldap-utils
+#  sudo: yes
+#  apt: pkg=ldap-utils state=present
+
+- name: debconf for slapd organization
   sudo: yes
-  apt: pkg=slapd state=present
-- name: Install ldap-utils
+  debconf: name=slapd question='shared/organization' value='fit' vtype='string'
+
+- name: debconf for slapd domain
   sudo: yes
-  apt: pkg=ldap-utils state=present
-  handlers:
-    - name: config slapd
-      sudo: yes
-      command: dpkg-reconfigure slapd
+  debconf: name=slapd question='slapd/domain' value='test' vtype='string'
+
+- name: debconf for slapd password1
+  sudo: yes
+  debconf: name=slapd question='slapd/password1' value='admin' vtype='password'
+
+- name: debconf for slapd password2
+  sudo: yes
+  debconf: name=slapd question='slapd/password2' value='admin' vtype='password'
+
+- name: debconf for slapd move_old_database
+  sudo: yes
+  debconf: name=slapd question='slapd/move_old_database' value='true' vtype='boolean'
+
+- name: debconf for slapd backend
+  sudo: yes
+  debconf: name=slapd question='slapd/backend' value='HDB' vtype='select'
+
+- name: Installing Slapd
+  sudo: yes
+  apt: 
+    name: 'slapd' 
+    state: 'present'
+
+- name: Purge LDAP Dir 
+  sudo: yes
+  shell: rm -rf /var/lib/ldap/*
+
+- name: Installing LDAP Utils
+  sudo: yes
+  apt: 
+    name: 'ldap-utils' 
+    state: 'present'
+
+- name: Installing LDAP vi
+  sudo: yes
+  apt: 
+    name: 'ldapvi'
+    state: 'present'
+
+- name: apply ldap config 
+  sudo: yes
+  shell: 'dpkg-reconfigure -f noninteractive slapd'
+
+- name: Have we configured slapd before?
+  sudo: yes
+  shell: "[ -f $ldap_slapd_dpkg_reconfigure_done ] && echo 'found' || echo ''"
+  register: ldap_slapd_already_configured 
