@@ -7,3 +7,4 @@
     - golang
     - docker
     - nodejs
+    - ldap-utils

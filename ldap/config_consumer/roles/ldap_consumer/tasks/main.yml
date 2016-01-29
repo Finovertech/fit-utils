@@ -4,4 +4,4 @@
 
 - name: Enable sync consumer
   sudo: yes
-  command: ldapadd -D "cn=admin,dc=test" -w admin -f enable_sync_consumer.ldif -Y EXTERNAL -H ldapi:///
+  command: ldapadd -D "cn=admin,dc={{ lookup('file', '../config/domain') }}" -w {{ lookup('file', '../config/admin_password') }} -f enable_sync_consumer.ldif -Y EXTERNAL -H ldapi:///
