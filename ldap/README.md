@@ -15,14 +15,14 @@ The following architecture can be found in subfolders.
 
 Install OpenLDAP Server.
 
-###Setup & Config OpenLDAP Provider Server `/ldap/SetupOpenLDAPProvider`
+###Config Provider `/ldap/ConfigProvider`
 
 *Under Construction*
 
-Config a OpenLDAP Server as provider.
+Config an existing OpenLDAP Server to be provider.
 
-###Setup & Config OpenLDAP Consumer Server `/ldap/SetupOpenLDAPConsumer`
+###Config Consumer `/ldap/ConfigConsumer`
 
 *Under Construction*
 
-Config a OpenLDAP Server as consumer.
+Config an existing OpenLDAP Server to be consumer.

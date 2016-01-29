@@ -2,5 +2,4 @@
 - hosts: all
   become_method: sudo
   roles:
-    - ldap
     - ldap_consumer
