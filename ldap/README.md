@@ -1,6 +1,6 @@
 #Setup & Config OpenLDAP Servers
 
-*Under Construction*
+**Under Construction**
 
 ## General Requirements
 
@@ -10,13 +10,15 @@
 
 ##Architectures
 
+OpenLDAP Server config options are saved in `/config` directory.
+
 The following architecture can be found in subfolders.
 
 ###Setup OpenLDAP Server `/ldap/setup_openldap`
 
-*Under Construction*
+**Under Construction**
 
-Setup your config for OpenLDAP Server.
+Setup your OpenLDAP Server.
 
 Specify domain in `/roles/ldap/config/domain`
 
@@ -24,9 +26,11 @@ Specify organization in `/roles/ldap/config/organization`
 
 The 10 digits admin password is random generated and saved as plain text in `*/credentials/admin_password`
 
+**Be sure to keep a record of your admin password.**
+
 ###Config Provider `/ldap/config_provider`
 
-*Under Construction*
+**Under Construction**
 
 Config an existing OpenLDAP Server to be provider.
 
@@ -38,13 +42,15 @@ Specify admin password in `/roles/ldap/config/admin_password`
 
 Edit `/config_provider/roles/ldap_provider/files/create_repl_user.ldif` to specify the reader account for consumer.
 
+Edit `/config_provider/roles/ldap_provider/files/enable_sync_prov.ldif` line 14 to enable the reader account for replication.
+
 We should make sure that each consumer has its own reader account.
 
 ###Config Consumer `/ldap/config_consumer`
 
-*Under Construction*
+**Under Construction**
 
-Config an existing OpenLDAP Server to be consumer of a provider.
+Config an existing OpenLDAP Server to be a consumer of a provider.
 
 Consumer must have the same domain as its provider.
 
@@ -56,4 +62,4 @@ Specify admin password in `/roles/ldap/config/admin_password`
 
 Specify provider ip address in `/roles/ldap/config/provider_ip`
 
-Edit `/config_consumer/roles/ldap_consumer/files/enable_sync_consumer.ldif` line 52 to specify provider ip address.
+Edit `/config_consumer/roles/ldap_consumer/files/enable_sync_consumer.ldif` line 52 to specify provider ip address and port.
