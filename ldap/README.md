@@ -5,18 +5,24 @@
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - [Vagrant](https://www.vagrantup.com/downloads.html)
 
-##Setup OpenLDAP Server
+##Architectures
+
+The following architecture can be found in subfolders.
+
+###Setup OpenLDAP Server `/ldap/SetupOpenLDAP`
 
 *Under Construction*
 
-##OpenLDAP Clustering
+Install OpenLDAP Server.
+
+###Setup & Config OpenLDAP Provider Server `/ldap/SetupOpenLDAPProvider`
 
 *Under Construction*
 
-###Config OpenLDAP Provider Server
+Config a OpenLDAP Server as provider.
+
+###Setup & Config OpenLDAP Consumer Server `/ldap/SetupOpenLDAPConsumer`
 
 *Under Construction*
 
-###Config OpenLDAP Consumer Server
-
-*Under Construction*
+Config a OpenLDAP Server as consumer.

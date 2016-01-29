@@ -1,5 +1,5 @@
 ---
-- name: copy reader for consumer 
+- name: Copy reader template for consumer 
   copy: src=../files/create_repl_user.ldif dest=~
 
 - name: Create reader for consumer

@@ -1,4 +1,8 @@
 ---
+- name: Update apt-get
+  sudo: yes
+  apt: update_cache=yes
+
 - name: Installing Slapd
   sudo: yes
   apt: 
@@ -20,10 +24,6 @@
   apt: 
     name: 'ldapvi'
     state: 'present'
-
-- name: Update apt-get
-  sudo: yes
-  apt: update_cache=yes
 
 - name: debconf for slapd organization
   sudo: yes
@@ -57,3 +57,4 @@
   sudo: yes
   shell: "[ -f $ldap_slapd_dpkg_reconfigure_done ] && echo 'found' || echo ''"
   register: ldap_slapd_already_configured 
+  
