@@ -24,11 +24,12 @@ Specify domain in `/roles/ldap/config/domain`
 
 Specify organization in `/roles/ldap/config/organization`
 
-The 10 digits admin password is random generated and saved as plain text in `*/credentials/admin_password`
+The 10 digits admin password is random generated and saved as plain text in `/roles/ldap/tasks/credentials/admin_password`
 
 Copy the content within this folder to a directory that you would like to setup your vm and run:
-
-`vagrant up`
+```
+vagrant up
+```
 
 **Be sure to keep a record of your admin password.**
 
@@ -51,8 +52,9 @@ Edit `/config_provider/roles/ldap_provider/files/enable_sync_prov.ldif` line 14 
 We should make sure that each consumer has its own reader account.
 
 Copy the content within this folder to the directory you setup your vm and run:
-
-`vagrant provision`
+```
+vagrant provision
+```
 
 ###Config Consumer `/ldap/config_consumer`
 
@@ -73,5 +75,6 @@ Specify provider ip address in `/roles/ldap_consumer/config/provider_ip`
 Edit `/config_consumer/roles/ldap_consumer/files/enable_sync_consumer.ldif` line 52 to specify provider ip address and port.
 
 Copy the content within this folder to directory you setup your vm and run:
-
-`vagrant provision`
+```
+vagrant provision
+```

@@ -1,0 +1,13 @@
+---
+
+- name: Install ZooKeeper
+  apt: name=zookeeperd state=present
+
+- name: Configure Zookeeper server
+  template: src=zoo.cfg.j2 dest="/etc/zookeeper/conf/zoo.cfg"
+
+- name: Configure myid
+  template: src=myid.j2 dest="/etc/zookeeper/conf/myid"
+  
+- name: Enable and start ZooKeeker service
+  service: name=zookeeper enabled=yes state=restarted

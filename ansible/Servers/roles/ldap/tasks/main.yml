@@ -1,0 +1,7 @@
+---
+
+- name: Install slapd
+  apt: name=slapd state=present
+
+- name: Install ldap-utils
+  apt: name=ldap-utils state=present

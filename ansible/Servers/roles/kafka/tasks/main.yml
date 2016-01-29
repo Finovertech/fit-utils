@@ -1,0 +1,46 @@
+---
+
+- name: Install Java runtime environment
+  apt: name=default-jre state=present
+
+- name: Add kafka group
+  group: name={{ kafka_group }} system=yes
+
+- name: Add kafka user
+  user: name={{ kafka_group }} group={{ kafka_group }} shell=/sbin/nologin system=yes
+
+- name: Extract Kafka tarball
+  unarchive: creates={{ common['install_base_path'] }}/{{ kafka_version }} src=/vagrant/file_archives/{{ kafka_version }}.tgz dest={{ common['install_base_path'] }}
+
+- name: Creating a Symbolic Link in {{ common['install_base_path'] }}/kafka.
+  file: src={{ common['install_base_path'] }}/{{ kafka_version }} path={{ common['soft_link_base_path'] }}/kafka state=link
+
+- name: Set permissions to Kafka folder
+  file: path={{ common['soft_link_base_path'] }}/kafka/ owner=root group=root recurse=yes
+
+- name: Create Kafka data directory
+  file: path=/kafka/data state=directory owner={{ kafka_user }} group={{ kafka_group }}
+
+- name: Create Kafka log directory
+  file: path={{ kafka_log_dir }} state=directory owner={{ kafka_user }} group={{ kafka_group }}
+
+- name: Link the log directory
+  file: src={{ kafka_log_dir }} path=/opt/kafka/logs state=link
+
+- name: Create Kafka conf directory
+  file: path={{ kafka_conf_dir }} state=directory owner=root group=root mode=755
+
+- name: Create Kafka conf directory
+  file: path={{ kafka_conf_dir }} state=directory owner=root group=root mode=755
+
+- name: Configure Kafka server
+  template: src=server.properties.j2 dest="{{kafka_conf_dir}}/server.properties"
+
+- name: Install Kafka init script
+  template: src=kafka-server.j2 dest=/etc/init.d/kafka-server mode=0755
+
+- name: Enable and start Kafka service
+  service: name=kafka-server enabled=yes state=restarted
+
+- name: Add Kafka binaries to PATH
+  copy: src=kafka.sh dest=/etc/profile.d/ owner=root group=root mode=644

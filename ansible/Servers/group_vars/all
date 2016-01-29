@@ -1,0 +1,10 @@
+---
+
+# --------------------------------------
+# COMMON FOR INSTALL PATH
+# --------------------------------------
+
+# Common Location information.
+common:
+  install_base_path: /usr/local
+  soft_link_base_path: /opt
