@@ -27,19 +27,19 @@
 
 - name: debconf for slapd organization
   sudo: yes
-  debconf: name=slapd question='shared/organization' value='fit' vtype='string'
+  debconf: name=slapd question='shared/organization' value='{{ lookup('file', '../config/organization') }}' vtype='string'
 
 - name: debconf for slapd domain
   sudo: yes
-  debconf: name=slapd question='slapd/domain' value='test' vtype='string'
+  debconf: name=slapd question='slapd/domain' value='{{ lookup('file', '../config/domain') }}' vtype='string'
 
 - name: debconf for slapd password1
   sudo: yes
-  debconf: name=slapd question='slapd/password1' value='admin' vtype='password'
+  debconf: name=slapd question='slapd/password1' value='{{ lookup('password', 'credentials/' + 'admin_password length=10 ') }}' vtype='password'
 
 - name: debconf for slapd password2
   sudo: yes
-  debconf: name=slapd question='slapd/password2' value='admin' vtype='password'
+  debconf: name=slapd question='slapd/password2' value='{{ lookup('password', 'credentials/' + 'admin_password length=10 ') }}' vtype='password'
 
 - name: debconf for slapd move_old_database
   sudo: yes

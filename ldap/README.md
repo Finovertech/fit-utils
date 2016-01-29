@@ -1,9 +1,12 @@
 #Setup & Config OpenLDAP Servers
 
+*Under Construction*
+
 ## General Requirements
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 - [Vagrant](https://www.vagrantup.com/downloads.html)
+- [Ansible](http://docs.ansible.com/ansible/intro_installation.html) 
 
 ##Architectures
 
@@ -13,13 +16,13 @@ The following architecture can be found in subfolders.
 
 *Under Construction*
 
-Setup your config for OpenLDAP Server:
+Setup your config for OpenLDAP Server.
 
-Copy the script to where you wanna setup your vm and run:
+Specify domain in `/roles/ldap/config/domain`
 
-```
-vagrant up
-```
+Specify organization in `/roles/ldap/config/organization`
+
+The 10 digits admin password is random generated and saved as plain text in `*/credentials/admin_password`
 
 ###Config Provider `/ldap/config_provider`
 
@@ -37,6 +40,6 @@ We should make sure that each consumer has its own reader account.
 
 Config an existing OpenLDAP Server to be consumer of a provider.
 
-Consumer should have the same dc as its provider.
+Consumer must have the same dc as its provider.
 
-Edit `/config_consumer/roles/ldap_consumer/files/enable_sync_consumer.ldif` line 52 to specify provider.
+Edit `/config_consumer/roles/ldap_consumer/files/enable_sync_consumer.ldif` line 52 to specify provider ip address.
