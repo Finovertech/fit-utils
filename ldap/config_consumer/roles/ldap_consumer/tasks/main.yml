@@ -1,0 +1,7 @@
+---
+- name: Copy config file to consumer
+  copy: src=../files/enable_sync_consumer.ldif dest=~
+
+- name: Enable sync consumer
+  sudo: yes
+  command: ldapadd -D "cn=admin,dc=test" -w admin -f enable_sync_consumer.ldif -Y EXTERNAL -H ldapi:///

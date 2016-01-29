@@ -13,6 +13,8 @@ The following architecture can be found in subfolders.
 
 *Under Construction*
 
+Setup your config for OpenLDAP Server:
+
 Copy the script to where you wanna setup your vm and run:
 
 ```

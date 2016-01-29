@@ -57,4 +57,3 @@
   sudo: yes
   shell: "[ -f $ldap_slapd_dpkg_reconfigure_done ] && echo 'found' || echo ''"
   register: ldap_slapd_already_configured 
-  
