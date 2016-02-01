@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ![FIN/TECH Logo](https://avatars3.githubusercontent.com/u/15434228?v=3&s=40 "FIN/TECH Logo") Utilities
 
 Collection of useful scripts to share with the world!
@@ -58,5 +57,3 @@ Lists which containers and images it will purge
 ```
 docker-cleanup --dry-run
 ```
-
->>>>>>> fit-utils/master
