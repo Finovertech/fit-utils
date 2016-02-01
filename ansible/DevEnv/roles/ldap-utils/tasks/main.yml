@@ -1,0 +1,6 @@
+---
+- name: Install ldap-utils
+  sudo: yes
+  apt: 
+    name: 'ldap-utils' 
+    state: 'present'
