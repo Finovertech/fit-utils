@@ -10,7 +10,7 @@
   user: name={{ kafka_group }} group={{ kafka_group }} shell=/sbin/nologin system=yes
 
 - name: Extract Kafka tarball
-  unarchive: creates={{ common['install_base_path'] }}/{{ kafka_version }} src=/vagrant/file_archives/{{ kafka_version }}.tgz dest={{ common['install_base_path'] }}
+  unarchive: creates={{ common['install_base_path'] }}/{{ kafka_version }} src=file_archives/{{ kafka_version }}.tgz dest={{ common['install_base_path'] }}
 
 - name: Creating a Symbolic Link in {{ common['install_base_path'] }}/kafka.
   file: src={{ common['install_base_path'] }}/{{ kafka_version }} path={{ common['soft_link_base_path'] }}/kafka state=link
