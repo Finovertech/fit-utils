@@ -1,0 +1,29 @@
+server ansible_ssh_host=10.0.0.10
+
+[kafka]
+server kafka_broker_id=1
+
+[zookeeper]
+server zookeeper_id=1
+
+[supervisor]
+
+[nimbus]
+server
+
+[ldap]
+server
+
+[storm:children]
+nimbus
+supervisor
+
+[servers:children]
+kafka
+storm
+zookeeper
+
+[servers:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant
+

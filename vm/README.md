@@ -15,8 +15,6 @@ Linux VM preconfigured with Ansible scripts found in Fit-Utils. If you are runni
 
 ### Single Server `/vm/singleserver`
 
-*Under Construction*
-
 Unless you have good reason, use the `/vm/threeservers` architecture. The `/vm/singleserver` architecture is intended for resource contrained environments. However, all our applications should be designed for horizontal scaling. A single server development environment can allow you to develop code that does not scale horizontally. Problems with eventual consitency, concurrency and node failure are not possible to test in this environment.
 
 
