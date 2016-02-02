@@ -7,6 +7,12 @@
   - name: Update apt-get
     apt: update_cache=yes
 
+- hosts: docker
+  sudo: yes
+  gather_facts: no
+  roles:
+    - docker
+  
 - hosts: zookeeper
   sudo: yes
   gather_facts: no

@@ -1,5 +1,8 @@
 server ansible_ssh_host=10.0.0.10
 
+[docker]
+server
+
 [kafka]
 server kafka_broker_id=1
 
