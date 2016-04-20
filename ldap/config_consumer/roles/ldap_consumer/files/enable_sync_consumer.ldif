@@ -1,0 +1,58 @@
+dn: cn=config
+changetype: modify
+replace: olcLogLevel
+olcLogLevel: stats
+
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+delete: olcAccess
+olcAccess: {0}to attrs=userPassword,shadowLastChange
+  by self write
+  by anonymous auth
+  by dn="cn=admin,dc=test" write
+  by * none
+-
+add: olcAccess
+olcAccess: {0}to attrs=userPassword,shadowLastChange
+  by anonymous auth
+  by * none
+-
+add: olcAccess
+olcAccess: {2}to *
+  by * read
+-
+replace: olcRootDN
+olcRootDN: cn=manager
+-
+delete: olcRootPW
+-
+add: olcDbIndex
+olcDbIndex: entryCSN eq
+-
+add: olcDbIndex
+olcDbIndex: entryUUID eq
+-
+add: olcDbIndex
+olcDbIndex: uid eq
+-
+add: olcDbIndex
+olcDbIndex: cn eq
+-
+add: olcDbIndex
+olcDbIndex: ou eq
+-
+add: olcDbIndex
+olcDbIndex: dc eq
+
+#Change provider's IP address
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+add: olcSyncrepl
+olcSyncrepl: rid=123
+  provider="ldap://192.168.1.234:389/"
+  type=refreshAndPersist
+  retry="60 30 300 +"
+  searchbase="dc=test"
+  bindmethod=simple
+  binddn="cn=ldaps2,dc=test"
+  credentials=fintech

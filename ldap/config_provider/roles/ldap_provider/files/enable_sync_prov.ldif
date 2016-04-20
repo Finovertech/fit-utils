@@ -1,0 +1,35 @@
+#dn: olcDatabase={1}hdb,cn=config
+#changetype: modify
+#delete: olcAccess
+#olcAccess: {0}to attrs=userPassword,shadowLastChange
+#	by self write by anonymous auth
+#	by dn="cn=admin,dc=test write by * none
+
+#dn: olcDatabase={1}hdb,cn=config
+#changetype: modify
+#add: olcAccess
+#olcAccess: {0}to attrs=userPassword,shadowLastChange
+#  by self write
+#  by dn="cn=admin,dc=test" write
+#  by dn="cn=ldaps2,dc=test" read
+#  by anonymous auth
+#  by * none
+#-
+#add: olcDbIndex
+#olcDbIndex: entryUUID eq
+#-
+#add: olcDbIndex
+#olcDbIndex: entryCSN eq
+
+dn: cn=module{0},cn=config
+changetype: modify
+add: olcModuleLoad
+olcModuleLoad: {1}syncprov
+
+dn: olcOverlay=syncprov, olcDatabase={1}hdb, cn=config
+changetype: add
+objectClass: olcOverlayConfig
+objectClass: olcSyncProvConfig
+olcOverlay: {0}syncprov
+olcSpCheckpoint: 100 10
+olcSpSessionlog: 100
